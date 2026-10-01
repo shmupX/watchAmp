@@ -25,6 +25,8 @@ own audiobook library without Audible, a cloud account, or a companion app.
 - Keeps playing with the screen off and supports system media controls and headset buttons
 - Recovers cleanly when Bluetooth headphones temporarily disconnect
 - Transfers books through a built-in browser uploader over your local Wi-Fi
+- Doubles as a remote for desktop music: pick a song on the watch and a paired
+  [cmg launcher](https://github.com/easierbycode/cmg) switches to it
 - Requires no phone, companion app, account, cloud service, analytics, or tracking
 
 ## The simple workflow
@@ -41,6 +43,39 @@ connect headphones, and listen.
 The uploader is intentionally local and temporary: it starts only when you ask
 it to, stops after two minutes idle, and removes incomplete files. Aloud does not
 need internet access to play books already stored on the watch.
+
+## Desktop music remote
+
+Separate from the audiobook player, and optional: **Library → ♪ Desktop music**
+lists the albums of the music player docked in a
+[cmg launcher](https://github.com/easierbycode/cmg) and switches the song
+playing there when you tap one, with previous / pause / next alongside.
+
+```
+watch ──(internet)──> Firebase Realtime Database <──(internet)── launcher ──> music player
+```
+
+1. In the launcher, open **Settings → WATCH REMOTE** and switch it on. It shows
+   an eight-character code such as `ABCD-EFGH`.
+2. On the watch, open **Aloud → ♪ Desktop music**, type the code and tap
+   **Pair**. It is remembered; **Unpair** is at the bottom of the list.
+
+The watch and the desktop never connect to each other — both talk to the
+database, so they do not need to share a network and the desktop needs no open
+port. It is the same arrangement shmupX's watch app uses to start a game on a
+desktop. Unlike everything else in Aloud this part does need internet access on
+the watch, and only while that screen is open: the connection is dropped when
+the app leaves the foreground.
+
+A song is not shown as switched until the desktop says so, and a press nobody
+answers says "No reply from desktop" rather than pretending. The pairing code
+is the only secret: the database is open to anyone who knows it, which is why
+the launcher only ever plays tracks its own player reported and the watch treats
+everything it reads as untrusted. Volume is not remotely adjustable — the
+player has no command for it.
+
+To bake a code into your own build instead of typing it, see
+[`local.properties.example`](local.properties.example).
 
 ## Install
 
@@ -72,8 +107,10 @@ Requirements: JDK 21 and an Android SDK with API 37 installed.
 ```
 
 The test suite covers M4B chapter parsing, MP3 chapter handling, the uploader
-contract (including PIN enforcement, chunk validation, retries and cleanup), and
-library naming/media-ID rules. CI runs tests, lint and a debug build on every
+contract (including PIN enforcement, chunk validation, retries and cleanup),
+library naming/media-ID rules, and the desktop remote (wire format, the event
+stream, and the whole press-and-wait-for-an-answer path against a stand-in
+database). CI runs tests, lint and a debug build on every
 push and pull request; tagged builds produce a signed release APK when the
 repository signing secrets are configured.
 

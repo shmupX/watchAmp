@@ -51,6 +51,7 @@ import kotlinx.coroutines.withContext
 fun LibraryScreen(
     onPlay: (Book) -> Unit,
     onOpenUploader: () -> Unit,
+    onOpenRemote: () -> Unit,
     onOpenNowPlaying: () -> Unit,
     onDelete: suspend (Book) -> Unit,
 ) {
@@ -86,6 +87,12 @@ fun LibraryScreen(
                 onClick = onOpenUploader,
                 modifier = Modifier.padding(top = 12.dp),
             ) { Text(stringResource(R.string.library_uploader)) }
+            // The desktop remote needs no books on the watch, so it has to be
+            // reachable from an empty library too.
+            Button(
+                onClick = onOpenRemote,
+                modifier = Modifier.padding(top = 8.dp),
+            ) { Text(stringResource(R.string.library_remote)) }
         }
         return
     }
@@ -118,6 +125,16 @@ fun LibraryScreen(
                         overflow = TextOverflow.Ellipsis,
                     )
                 }
+            }
+            item {
+                Text(
+                    text = stringResource(R.string.library_remote),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onOpenRemote() }
+                        .padding(vertical = 10.dp, horizontal = 16.dp),
+                    maxLines = 1,
+                )
             }
             items(count = books.size, key = { books[it].id }) { i ->
                 val book = books[i]

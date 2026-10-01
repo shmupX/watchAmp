@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
         )
         // Debug hooks (compiled out of release builds):
         //   --es autoplay <bookId>   play a book without UI taps
-        //   --es screen <name>       start on a specific screen (library/nowplaying/uploader)
+        //   --es screen <name>       start on a specific screen (library/nowplaying/uploader/remote)
         //   --es uploader_start 1    also start the upload server immediately (perms pre-granted via pm)
         val autoplay = intent.getStringExtra("autoplay").takeIf { BuildConfig.DEBUG }
         val screen = intent.getStringExtra("screen").takeIf { BuildConfig.DEBUG }

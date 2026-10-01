@@ -24,4 +24,24 @@
     <string name="uploader_needs_local_network">Needs local network permission</string>
     <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
+    <string name="library_remote">♪ Desktop music</string>
+    <string name="remote_header">Desktop music</string>
+    <string name="remote_pair_hint">Enter the code from the launcher: Settings › Watch remote</string>
+    <string name="remote_pair_placeholder">ABCD-EFGH</string>
+    <string name="remote_pair_code">Pairing code</string>
+    <string name="action_pair">Pair</string>
+    <string name="remote_unpair">Unpair %1$s</string>
+    <string name="remote_connecting">Connecting…</string>
+    <string name="remote_waiting">Waiting for desktop…</string>
+    <string name="remote_no_desktop">Desktop not answering. Open the launcher and switch Watch remote on.</string>
+    <string name="remote_idle">Nothing playing</string>
+    <string name="remote_playing">▶ %1$s</string>
+    <string name="remote_paused">⏸ %1$s</string>
+    <string name="remote_sending">… %1$s</string>
+    <string name="remote_no_albums">No albums on the desktop</string>
+    <string name="remote_no_reply">No reply from desktop</string>
+    <string name="remote_not_sent">Couldn\'t send — check Wi-Fi</string>
+    <string name="remote_failed">Desktop: %1$s</string>
+    <string name="action_previous_song">Previous song</string>
+    <string name="action_next_song">Next song</string>
 </resources>
