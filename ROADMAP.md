@@ -17,19 +17,26 @@ Prefix with `JAVA_HOME=/home/emre/.jdks/temurin-21.0.12.1`.
 
 ## Open
 
-- 🔶 **Desktop music remote** (Library → ♪ Desktop music). Pick a song on the
+- ✅ **Desktop music remote** (Library → ♪ Desktop music). Pick a song on the
   watch and the paired cmg launcher's music player switches to it; the launcher
   half is `static/watch-music.js` in the cmg repo. Verified off-device: the
   bridge against a stand-in database in the JVM tests, and end to end against
   the real launcher and player in headless Chromium — launch, pause/resume,
   next/prev, a refused press, and a cold start with the player not yet open.
 
-  **Not proven on the watch:** the screen has never been drawn on the device.
-  Check typing the pairing code with the watch keyboard, crown scrolling of the
-  album list, that the stream drops when the app leaves the foreground and
-  returns when it comes back, and what the screen says with Wi-Fi off. Also
-  unmeasured: the battery cost of holding the stream open while the screen is
-  up.
+  **Verified on the Pixel Watch 5** (2026-10-01), debug build, against the
+  hosted launcher and the real database: the code typed on the watch keyboard,
+  the album list, a tapped song starting on the desktop and showing as playing
+  on the wrist, pause / play / next / previous, and a fresh `sync` after the
+  app was backgrounded and brought back.
+
+  The device run earned its keep: the keyboard's ✓ did nothing at all until
+  `onDone` was made to close the keyboard itself for a not-yet-valid code.
+
+  **Still unchecked:** crown and finger scrolling of the album list (adb cannot
+  scroll a lazy list), what the screen says with Wi-Fi off, the release build
+  (R8 has not seen this code), and the battery cost of holding the stream open
+  while the screen is up.
 - 🔶 **First real listening session, 2026-09-01 evening.** Three problems
   reported from an actual run with Pixel Buds Pro:
 

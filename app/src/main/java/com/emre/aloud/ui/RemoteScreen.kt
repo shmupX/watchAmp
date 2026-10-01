@@ -128,7 +128,18 @@ private fun PairPrompt(onPair: (String) -> Unit) {
                 autoCorrectEnabled = false,
                 imeAction = ImeAction.Done,
             ),
-            keyboardActions = KeyboardActions(onDone = { if (valid) onPair(PairCode.normalize(typed)) }),
+            // The watch keyboard hands over the text and fires Done back to back,
+            // before this screen has recomposed — so validity is read from the
+            // state here, not from `valid`, which is still the pre-typing value.
+            // And supplying onDone replaces the default of closing the keyboard,
+            // so a code that is not one yet has to close it explicitly or the
+            // confirm button appears to do nothing at all.
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    if (PairCode.isValid(typed)) onPair(PairCode.normalize(typed))
+                    else defaultKeyboardAction(ImeAction.Done)
+                },
+            ),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 12.dp)

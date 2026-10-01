@@ -95,11 +95,28 @@ desktop --> /builders/<code>/music/library   {albums: [{id, title, tracks: [{id,
 - **No HTTP client library on purpose.** `HttpURLConnection` plus a forty-line
   event-stream reader costs the APK nothing.
 
+- **The watch keyboard's confirm fires `onDone` on its own terms.** Supplying
+  `onDone` replaces Compose's default of closing the keyboard, so the handler
+  must either pair or call `defaultKeyboardAction` — otherwise the ✓ button
+  looks dead. And it must read validity from the state, not from a value
+  captured at composition, which can still be the pre-typing one.
+
 `RemoteBridgeTest` runs the bridge against a real local HTTP server standing in
-for the database. It was additionally run once against the actual launcher and
-music player in headless Chromium (launch, pause, resume, next, prev, a refused
-press, a cold start). **Not yet run on a watch** — the screen itself, the
-on-watch keyboard for the code, and the lifecycle stop/start are unverified.
+for the database. Verified on the Pixel Watch 5 (2026-10-01) against the hosted
+launcher and the real database: typing the code on the watch keyboard, the
+album list, switching a song, pause/play/next/previous, and the stream being
+re-opened with a fresh `sync` after the app was backgrounded and brought back.
+
+Driving that screen over adb has its own traps:
+
+- **`adb shell input text` does not type into the app.** The characters show up
+  in the Wear keyboard's preview line but never reach the text field
+  (`onValueChange` is not called), and ✓ then submits an empty field. Tap the
+  on-screen keys by coordinate instead; those arrive one `onValueChange` each.
+- **Wait for the keyboard before tapping keys.** It can take from one to more
+  than five seconds to appear; poll `dumpsys input_method | grep
+  mInputShown=true`. Taps sent early land on the app underneath.
+- **`--es screen remote`** opens the screen directly on a debug build.
 
 ## Device workflow
 
