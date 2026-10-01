@@ -27,6 +27,7 @@ object PlayerPrefs {
     private val KEY_SLEEP_END_MS = longPreferencesKey("sleepEndAtMs")
     private val KEY_SLEEP_MINUTES = intPreferencesKey("sleepMinutes")
     private val KEY_LAST_BOOK = stringPreferencesKey("lastBook")
+    private val KEY_PAIR_CODE = stringPreferencesKey("pairCode")
 
     suspend fun getPos(context: Context, bookId: String): Long =
         context.dataStore.data.first()[posKey(bookId)] ?: 0L
@@ -90,5 +91,16 @@ object PlayerPrefs {
 
     suspend fun setLastBook(context: Context, bookId: String) {
         context.dataStore.edit { it[KEY_LAST_BOOK] = bookId }
+    }
+
+    /** The desktop this watch is paired with for the music remote, if any. */
+    suspend fun getPairCode(context: Context): String? =
+        context.dataStore.data.first()[KEY_PAIR_CODE]
+
+    suspend fun setPairCode(context: Context, code: String?) {
+        context.dataStore.edit {
+            if (code == null) it.remove(KEY_PAIR_CODE)
+            else it[KEY_PAIR_CODE] = code
+        }
     }
 }

@@ -1,7 +1,21 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
 }
+
+// The desktop remote's pairing defaults. Both are optional: the database has a
+// working default and the code can be typed on the watch instead. Read from
+// local.properties first so a personal code never has to go near the repo.
+val localProps = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) file.inputStream().use(::load)
+}
+fun remoteProp(name: String, fallback: String = ""): String =
+    (localProps.getProperty(name) ?: project.findProperty(name) as? String)
+        ?.trim()?.takeIf { it.isNotEmpty() } ?: fallback
+fun quoted(value: String): String = "\"" + value.replace("\\", "\\\\").replace("\"", "\\\"") + "\""
 
 android {
     namespace = "com.emre.aloud"
@@ -13,6 +27,13 @@ android {
         targetSdk = 37
         versionCode = 2
         versionName = "0.1.2"
+
+        buildConfigField(
+            "String",
+            "REMOTE_RTDB_URL",
+            quoted(remoteProp("ALOUD_RTDB_URL", "https://evil-invaders-default-rtdb.firebaseio.com")),
+        )
+        buildConfigField("String", "REMOTE_PAIR_CODE", quoted(remoteProp("ALOUD_PAIR_CODE")))
     }
 
     buildFeatures {
@@ -84,5 +105,8 @@ dependencies {
     }
     implementation(libs.ktor.server.cio)
     testImplementation(libs.junit)
+    // android.jar's org.json is a stub that returns defaults under unit tests;
+    // the remote's wire format is parsed with it, so tests need the real one.
+    testImplementation(libs.json)
     testImplementation(libs.ktor.server.test.host)
 }

@@ -37,6 +37,7 @@ private sealed interface Screen {
     data object NowPlaying : Screen
     data object Chapters : Screen
     data object Uploader : Screen
+    data object Remote : Screen
 }
 
 @Composable
@@ -56,6 +57,7 @@ fun WearApp(
             when (initialScreen) {
                 "nowplaying" -> Screen.NowPlaying
                 "uploader" -> Screen.Uploader
+                "remote" -> Screen.Remote
                 else -> Screen.Library
             },
         )
@@ -127,6 +129,7 @@ fun WearApp(
                     screen = Screen.NowPlaying
                 },
                 onOpenUploader = { screen = Screen.Uploader },
+                onOpenRemote = { screen = Screen.Remote },
                 onOpenNowPlaying = { screen = Screen.NowPlaying },
                 onDelete = { book ->
                     // Stop playback if the deleted book is the one playing,
@@ -149,6 +152,10 @@ fun WearApp(
         Screen.Uploader -> {
             BackHandler { screen = Screen.Library }
             UploaderScreen()
+        }
+        Screen.Remote -> {
+            BackHandler { screen = Screen.Library }
+            RemoteScreen()
         }
     }
 }

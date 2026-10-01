@@ -9,7 +9,7 @@ its history is in git. This file is the whole inventory now.
 
 | Gate | Command | State |
 | --- | --- | --- |
-| Unit tests | `./gradlew :app:testDebugUnitTest` | ✅ 39 passing |
+| Unit tests | `./gradlew :app:testDebugUnitTest` | ✅ 67 passing |
 | Static analysis | `./gradlew :app:lintDebug` | ✅ 0 errors, no baseline |
 | Release build | `./gradlew :app:assembleRelease` | ✅ signed, R8-minified |
 
@@ -17,6 +17,19 @@ Prefix with `JAVA_HOME=/home/emre/.jdks/temurin-21.0.12.1`.
 
 ## Open
 
+- 🔶 **Desktop music remote** (Library → ♪ Desktop music). Pick a song on the
+  watch and the paired cmg launcher's music player switches to it; the launcher
+  half is `static/watch-music.js` in the cmg repo. Verified off-device: the
+  bridge against a stand-in database in the JVM tests, and end to end against
+  the real launcher and player in headless Chromium — launch, pause/resume,
+  next/prev, a refused press, and a cold start with the player not yet open.
+
+  **Not proven on the watch:** the screen has never been drawn on the device.
+  Check typing the pairing code with the watch keyboard, crown scrolling of the
+  album list, that the stream drops when the app leaves the foreground and
+  returns when it comes back, and what the screen says with Wi-Fi off. Also
+  unmeasured: the battery cost of holding the stream open while the screen is
+  up.
 - 🔶 **First real listening session, 2026-09-01 evening.** Three problems
   reported from an actual run with Pixel Buds Pro:
 
