@@ -4,6 +4,13 @@ A standalone audiobook player for Wear OS (Pixel Watch 5). ~2,000 lines of Kotli
 `ROADMAP.md` is the human-facing plan; this file is the machine-facing memory of
 things that are expensive to rediscover.
 
+**The app is called "🐵 Music" on the watch** — launcher label, uploader page,
+store title, and a 🐵 launcher icon (`drawable-*/ic_launcher_monkey*.png`,
+rendered from Noto Color Emoji and Noto Emoji). Everything internal is still
+Aloud: the package `com.emre.aloud`, the `Aloud` log tag, the keystore alias and
+these notes. Do not rename the package — a new `applicationId` is a different
+app to the watch, and the installed one keeps its library.
+
 ## Build and verify
 
 ```bash

@@ -1,8 +1,8 @@
-Aloud is an open-source, standalone audiobook player for Wear OS watches.
+🐵 Music is an open-source, standalone audiobook player for Wear OS watches.
 It is an offline audiobook app for Pixel Watch users who want to listen to their
 own DRM-free MP3 and M4B files without carrying a phone.
 
-Copy books to the watch through Aloud's built-in browser uploader over local
+Copy books to the watch through 🐵 Music's built-in browser uploader over local
 Wi-Fi. The uploader is protected by a six-digit PIN and needs no cable,
 companion app, account, cloud service, or internet connection. Once a book is
 stored on the watch, connect Bluetooth headphones and listen anywhere.
@@ -20,7 +20,7 @@ Features
 * Browser-based local Wi-Fi uploader with PIN protection
 * No account, cloud sync, analytics, tracking, or third-party services
 
-Aloud is currently a sideloaded alpha, built and tested primarily on the Pixel
+🐵 Music is currently a sideloaded alpha, built and tested primarily on the Pixel
 Watch 5 with Wear OS 4 or newer. It is not yet available through Google Play.
 The project is intended for personal DRM-free audiobook libraries, running,
 walking, travel, and sleep.

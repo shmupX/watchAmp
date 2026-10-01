@@ -1,8 +1,12 @@
-# Aloud
+# 🐵 Music
+
+> Formerly **Aloud**. Only the name on the watch and the icon changed: the
+> package is still `com.emre.aloud`, and the code, logs and developer notes
+> still say Aloud.
 
 **Your audiobooks. On your Wear OS watch. No phone required.**
 
-Aloud is a free, open-source, standalone audiobook player for Wear OS. Copy your
+🐵 Music is a free, open-source, standalone audiobook player for Wear OS. Copy your
 own DRM-free **MP3 or M4B audiobooks** to a Pixel Watch, connect Bluetooth
 headphones, and go for a run without carrying a phone.
 
@@ -35,13 +39,13 @@ own audiobook library without Audible, a cloud account, or a companion app.
 Computer ──(local Wi-Fi upload)──> Wear OS watch ──(Bluetooth)──> headphones
 ```
 
-On the watch, open **Aloud → Uploader → Start**. Aloud displays a local address
+On the watch, open **🐵 Music → Uploader → Start**. 🐵 Music displays a local address
 and a six-digit PIN. Open that address on a computer on the same Wi-Fi, enter the
 PIN, and drag in your `.m4b` or `.mp3` files. Stop the uploader, choose a book,
 connect headphones, and listen.
 
 The uploader is intentionally local and temporary: it starts only when you ask
-it to, stops after two minutes idle, and removes incomplete files. Aloud does not
+it to, stops after two minutes idle, and removes incomplete files. 🐵 Music does not
 need internet access to play books already stored on the watch.
 
 ## Desktop music remote
@@ -57,13 +61,13 @@ watch ──(internet)──> Firebase Realtime Database <──(internet)──
 
 1. In the launcher, open **Settings → WATCH REMOTE** and switch it on. It shows
    an eight-character code such as `ABCD-EFGH`.
-2. On the watch, open **Aloud → ♪ Desktop music**, type the code and tap
+2. On the watch, open **🐵 Music → ♪ Desktop music**, type the code and tap
    **Pair**. It is remembered; **Unpair** is at the bottom of the list.
 
 The watch and the desktop never connect to each other — both talk to the
 database, so they do not need to share a network and the desktop needs no open
 port. It is the same arrangement shmupX's watch app uses to start a game on a
-desktop. Unlike everything else in Aloud this part does need internet access on
+desktop. Unlike everything else in 🐵 Music this part does need internet access on
 the watch, and only while that screen is open: the connection is dropped when
 the app leaves the foreground.
 
@@ -79,7 +83,7 @@ To bake a code into your own build instead of typing it, see
 
 ## Install
 
-Aloud is currently installed by sideloading. Enable wireless debugging on the
+🐵 Music is currently installed by sideloading. Enable wireless debugging on the
 watch:
 
 **Settings → System → Developer options → Wireless debugging → On**
@@ -117,7 +121,7 @@ repository signing secrets are configured.
 ## Why this project exists
 
 Most Wear OS audiobook options are phone-first, closed, cloud-dependent, or
-awkward for a personal DRM-free library. Aloud does one thing deliberately:
+awkward for a personal DRM-free library. 🐵 Music does one thing deliberately:
 make the watch itself a reliable offline audiobook player for running, walking,
 travel, and sleep.
 
@@ -147,7 +151,7 @@ The interesting implementation details are documented in the source and
 ## Contributing
 
 Bug reports and device compatibility reports are welcome. Please include the
-watch model, Wear OS version, Aloud version/commit, file format, and whether the
+watch model, Wear OS version, 🐵 Music version/commit, file format, and whether the
 problem is reproducible after restarting the app. See
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -155,4 +159,4 @@ problem is reproducible after restarting the app. See
 
 See [ROADMAP.md](ROADMAP.md) for current verification status and planned work.
 
-Aloud is licensed under [GPL-3.0](LICENSE).
+🐵 Music is licensed under [GPL-3.0](LICENSE).

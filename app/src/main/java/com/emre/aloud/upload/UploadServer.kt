@@ -365,9 +365,9 @@ private fun sanitizeName(raw: String?): String? {
 
 private val UPLOADER_HTML = """
 <!doctype html>
-<html><head><meta charset="utf-8"><title>Aloud upload</title></head>
+<html><head><meta charset="utf-8"><title>🐵 Music upload</title></head>
 <body style="font-family:sans-serif;max-width:40rem;margin:2rem auto">
-<h2>Aloud &mdash; add audiobooks</h2>
+<h2>🐵 Music &mdash; add audiobooks</h2>
 <p><label>PIN from watch: <input id="pin" inputmode="numeric" size="8" autocomplete="off"></label></p>
 <input type="file" id="f" multiple>
 <ul id="s"></ul>

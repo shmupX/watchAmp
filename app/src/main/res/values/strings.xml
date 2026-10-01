@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Aloud</string>
+    <string name="app_name">🐵 Music</string>
     <string name="connecting">Connecting…</string>
     <string name="library_header">My audiobooks</string>
     <string name="library_empty">No books yet</string>
